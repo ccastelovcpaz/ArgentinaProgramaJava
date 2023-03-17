@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class Ejercicio3 {
@@ -79,7 +78,6 @@ public class Ejercicio3 {
 	public static int unNumero(String mensaje) {
 		Scanner scn = new Scanner(System.in);
 		String nro ="";
-		int numero;
 		System.out.print(mensaje);
 		do {
 			nro=scn.next();
