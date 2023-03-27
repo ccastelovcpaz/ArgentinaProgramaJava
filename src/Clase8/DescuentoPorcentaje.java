@@ -7,7 +7,7 @@ public class DescuentoPorcentaje extends Descuento{
 	}
 
 	@Override
-	public float valorFinal(float valorInicial) {
+	public float valorFinal(float valorInicial) throws ValorCeroException, TotalNegativoException {
 		return valorInicial - ( valorInicial * super.getValorDesc());
 	}
 

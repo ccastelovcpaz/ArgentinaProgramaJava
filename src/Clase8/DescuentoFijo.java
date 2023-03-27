@@ -7,7 +7,7 @@ public class DescuentoFijo extends Descuento {
 	}
 
 	@Override
-	public float valorFinal(float valorInicial) {
+	public float valorFinal(float valorInicial) throws ValorCeroException, TotalNegativoException {
 		return valorInicial-super.getValorDesc();
 	}
 

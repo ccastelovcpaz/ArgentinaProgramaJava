@@ -16,7 +16,7 @@ public abstract class Descuento {
 			this.valor = valor;
 		}
 		
-		public abstract float valorFinal(float valorInicial);
+		public abstract float valorFinal(float valorInicial) throws ValorCeroException, TotalNegativoException;
 
 }
 

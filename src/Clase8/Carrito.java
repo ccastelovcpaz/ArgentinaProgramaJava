@@ -5,16 +5,10 @@ import java.util.ArrayList;
 
 public class Carrito {
 	
-//	private Producto producto1;
-//	private Producto producto2;
-//	private Producto producto3;
 	private ArrayList<Producto> productos;
 	private LocalDateTime fechaCompra;
 	
 	public Carrito(LocalDateTime fechaCompra) {
-//		this.producto1=producto1;
-//		this.producto2=producto2;
-//		this.producto3=producto3;
 		this.productos = new ArrayList<Producto>();
 		this.fechaCompra=fechaCompra;
 	}
@@ -34,19 +28,45 @@ public class Carrito {
 	public void setFechaCompra(LocalDateTime fechaCompra) {
 		this.fechaCompra = fechaCompra;
 	}
-
-	public float costoFinal(Descuento dto) throws CarritoException {
+	
+	public void agregarProducto(Producto producto) {
+		if (!existeProducto(producto)) {
+			this.productos.add(producto);
+		}
+	}
+	
+	public void eliminarProducto(String codigo) {
+		for (int i=0;i<productos.size();i++) {
+			if (this.productos.get(i).getCodigo().equals(codigo)) {
+				this.productos.remove(i);
+			}
+		}
+	}
+	
+	public boolean existeProducto(Producto producto) {
+		for (Producto p : productos) {
+			if (p.getCodigo().equals(producto.getCodigo())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	public void vaciarCarrito() {
+		this.productos.clear();
+		this.fechaCompra=null;
+	}
+	
+	public float costoFinal(Descuento dto)  throws ValorCeroException, TotalNegativoException {
 		float resultado=0;
 		for (int i=0;i<productos.size();i++) {
 			resultado += productos.get(i).costoFinal();
 		}
-//		return dto.valorFinal(producto1.costoFinal()+producto2.costoFinal()+producto3.costoFinal());
 		if (resultado==0) {
-			throw new CarritoException("Error: no se puede aplicar descuento a un carrito de precio 0.");
+			throw new ValorCeroException(resultado);
 		}
 		resultado = dto.valorFinal(resultado);
 		if (resultado<0) {
-			throw new CarritoException("Error: al aplicar el descuento queda un importe negativo.");
+			throw new TotalNegativoException(resultado);
 		}
 		return resultado;
 	}
