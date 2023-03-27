@@ -1,4 +1,6 @@
 precioUnitario producto codigo
-40 jabón 123f
-10 esponja 124f
-100 chocolates 125f
+40 jabón 123
+10 esponja 124
+100 chocolates 125
+60 alfajor 126
+20 chupetin 127
